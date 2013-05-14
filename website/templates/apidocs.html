@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% load localeurl_tags %}
+{% load i18n %}
+
+{% block head %}
+<title>InnovAgenda - API</title>
+{% endblock %}
+
+{% block upnav %}
+	<li><a href="/{{ LANGUAGE_CODE }}/">{% trans "Mapa" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/events">{% trans "Eventos" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/calendar">{% trans "Calendario" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/search">{% trans "Buscador" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/apidocs" class="current">{% trans "API" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/contact">{% trans "Contacto" %}</a></li>
+{% endblock %}
+
+{% block content %}
+  <section id="topbox">
+  	<div class="container">
+		<div id="api_canvas" class="api_canvas">
+			<h2>{% trans "API de <span>InnovAgenda</span>" %}</h2>
+			<p>{% trans "Dado que la web del área de innovación del Gobierno Vasco, <a href='http://euskadinnova.net' target='_blank'>Euskadi+Innova</a>, solo publica sus datos en texto plano, desde InnovAgenda ofrecemos a usuarios y desarrolladores una nueva forma de acceder a estos datos mediante una sencilla API." %}</p>
+     	                <p>{% trans "Además, la API de InnovAgenda no solo ofrece la posibilidad de acceder a estos datos en diversos formatos tradicionales como JSON, XML o YAML, si no que incluye también la posibilidad de recoger esos datos en formato RDF, sobre los cuales se pueden hacer consultas SPARQL." %}</p>
+			<p>{% trans "La forma de acceder a la API es mediante consultas del tipo:" %} <a href="/api/v1/event/?format=json">{{ request.META.HTTP_HOST }}/api/v1/event/?CONSULTA</a></p>
+			<p>{% trans "El valor de CONSULTA puede tener 2 formatos: '/ID_DEL_EVENTO/' si es que conocemos el identificativo numérico del evento concreto al que queremos acceder, o bien, mediante el formato '/?CLAVE__OPERACION=VALOR' " %}</p>
+			<p>{% trans "En las consultas del segundo tipo, la CLAVE puede ser 'name_es' (Título del evento en castellano), 'name_eu' (Título del evento en euskera), 'start_date' (Fecha de comienzo del evento) o 'finish_date' (Fecha de fin del evento)." %}</p>
+			<p>{% trans "La __OPERACION es un parámetro opcional que puede tener valores de comparación como '__startswith' (Para especificar que lo buscado empieza por VALOR), '__contains' (Para especificar que lo buscado contiene VALOR), '__gt' (Para especificar que lo buscado es mayor que VALOR), '__lt' (Para especificar que lo buscado es menor que VALOR), '__gte' (Para especificar que lo buscado es mayor o igual que VALOR) o '__lte' (Para especificar que lo buscado es menor o igual que VALOR). Siendo el VALOR es lo que se quiere encontrar. Cabe comentar que es posible concatenar CONSULTA-s mediante el carácter '&'" %}</p>
+			<p>{% trans "Para especificar el formato en que se quieren recibir los datos se debe incluir al final 'format=FORMATO'. Si se quiere especificar el idioma en el que se quieren recibir los datos (es opcional), se debe incluir 'lang=IDIOMA'." %}</p>
+		</div>
+		<div id="map_customizer" class="map_customizer">
+			<h2><span>{% trans "Ejemplos" %}</span></h2>
+			<h3>{% trans "Recoger todos los eventos en formato XML y en Euskera" %}:</h3>
+			<a href="/api/v1/event/?format=xml&lang=eu">{{ request.META.HTTP_HOST }}/api/v1/event/?format=xml&lang=eu</a><br />
+			<h3>{% trans "Recoger todos los eventos que contengan en su nombre en castellano la palabra 'Google'" %}:</h3>
+			<a href="/api/v1/event/?format=json">{{ request.META.HTTP_HOST }}/api/v1/event/?name_es__contains=Google&format=json</a><br />
+			<h3>{% trans "Recoger el evento 4435" %}:</h3>
+			<a href="/api/v1/event/4435/?format=rdf">{{ request.META.HTTP_HOST }}/api/v1/event/4435/?format=rdf</a><br />
+			<h3>{% trans "Recoger todos los eventos cuya fecha de fin sea 2011-09-15" %}</h3>
+			<a href="/api/v1/event/?finish_date=2011-09-15&format=xml">{{ request.META.HTTP_HOST }}/api/v1/event/?finish_date=2011-09-15&format=xml</a><br />
+			<h3>{% trans "Recoger todos los eventos cuya fecha de inicio sea mayor que 2011-09-10" %}</h3>
+			<a href="/api/v1/event/?start_date__gt=2011-09-10?format=yaml">{{ request.META.HTTP_HOST }}/api/v1/event/?start_date__gt=2011-09-10?format=yaml</a><br />
+		</div>
+  	</div>
+  </section>
+  <div class="footbox">
+    <div class="container">
+    </div>
+  </div>
+{% endblock %}

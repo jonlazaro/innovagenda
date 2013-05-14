@@ -1,0 +1,18 @@
+{% extends "mobile/base.html" %}
+
+{% load i18n %}
+{% load localeurl_tags %}
+
+{% block title %}
+	{% trans "Lista de eventos" %}
+{% endblock %}
+
+{% block content %}
+<div data-role="content">
+    <ul data-role="listview" data-inset="true" data-theme="d" class="ui-bar-f">
+	{% for event in events %}
+		<li data-icon="arrow-r"><a href="/{{ LANGUAGE_CODE }}/event/{{ event.event_id }}">{{ event.name }}</a></li>
+	{% endfor %}
+    </ul>	
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% load i18n %}
+{% load localeurl_tags %}
+
+<!DOCTYPE html> 
+<html> 
+    <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="/static/images/favicon.png">
+
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.min.css" />
+	<link rel="stylesheet" href="/static/css/jquerymobileext.css" />
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.min.js"></script>
+	<script type="text/javascript">
+		window.addEventListener("load",function() {
+			setTimeout(function(){
+				window.scrollTo(0, 1);
+			}, 0);
+		});
+	</script>
+	<script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+	  {lang: 'es'}
+	</script>
+    </head>
+    <body> 	
+	<div data-role="page" data-add-back-btn="true">
+		<div data-role="header" data-position="inline" class="ui-bar-f">
+			<h1></h1>
+			{% ifequal LANGUAGE_CODE "es" %}
+				<a href="{{ request.path|chlocale:'eu' }}" data-ajax="false" data-icon="info" class="ui-btn-right" data-theme="c">Euskera</a>
+			{% else %}
+				<a href="{{ request.path|chlocale:'es' }}" data-ajax="false" data-icon="info" class="ui-btn-right" data-theme="c">Gaztelania</a>
+			{% endifequal %}
+		</div>
+		<div data-role="content">
+		    <div align="center"><img src="/static/images/title.png"/></div>
+		    <ul data-role="listview" data-inset="true" data-theme="d">
+			<li data-role="list-divider" role="heading" class="ui-bar-f">{% trans "Menú" %}</li>
+			<li data-icon="arrow-r"><a href="/{{ LANGUAGE_CODE }}/map">{% trans "Mapa" %}</a></li>
+			<li data-icon="arrow-r"><a href="/{{ LANGUAGE_CODE }}/events">{% trans "Eventos" %}</a></li>
+			<li data-icon="arrow-r"><a href="/{{ LANGUAGE_CODE }}/calendar">{% trans "Calendario" %}</a></li>
+			<li data-icon="arrow-r"><a href="/{{ LANGUAGE_CODE }}/search">{% trans "Buscador" %}</a></li>
+		    </ul>
+		    <p>Visualizar la <a href="/{{ LANGUAGE_CODE }}/?flavour=full" data-ajax="false">versión completa</a></p>
+		</div>
+		<div data-role="footer" data-theme="c">
+			<p> &nbsp;InnovAgenda by Jon Lázaro Aduna</p>
+		</div>
+	</div>
+    </body>
+</html>

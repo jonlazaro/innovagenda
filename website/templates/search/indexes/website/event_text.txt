@@ -1,0 +1,12 @@
+{{ object.name }}
+{{ object.event_id }}
+{{ object.start_date }}
+{{ object.finished_date }}
+{{ object.finished }}
+{{ object.localization }}
+{{ object.province.name }}
+{{ object.course_lang.name }}
+{{ object.activity_type.name }}
+{{ object.topic.name }}
+{{ object.coordinator.name }}
+{{ object.organizator.name }}

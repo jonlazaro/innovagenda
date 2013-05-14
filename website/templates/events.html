@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% load localeurl_tags %}
+{% load i18n %}
+
+{% block head %}
+<title>InnovAgenda - {% trans "Eventos" %}</title>
+{% endblock %}
+
+{% block upnav %}
+	<li><a href="/{{ LANGUAGE_CODE }}/">{% trans "Mapa" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/events" class="current">{% trans "Eventos" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/calendar">{% trans "Calendario" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/search">{% trans "Buscador" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/apidocs">{% trans "API" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/contact">{% trans "Contacto" %}</a></li>
+{% endblock %}
+
+{% block content %}
+  <section id="topbox">
+  	<div class="container">
+	<div class="inside">
+		{% trans "<h2>Lista de <span>Eventos</span></h2>" %}		
+		{% for event in events.object_list %}
+			<span>{{ event.start_date.isoformat }} | {{ event.activity_type.name }}<span>		    
+			<h3><a href="/{{ LANGUAGE_CODE }}/event/{{ event.event_id }}">{{ event.name|upper }}</a></h3> 
+		{% endfor %}
+
+		<div class="pagination">
+		    <span class="step-links">
+			{% if events.has_previous %}
+			    <a href="?page={{ events.previous_page_number }}">{% trans "Anterior" %}</a>
+			{% endif %}
+
+			<span class="current">
+			    {% blocktrans with currentpage=events.number totpages=events.paginator.num_pages %}
+				Página {{ currentpage }} de {{ totpages }}
+			    {% endblocktrans %}
+			</span>
+
+			{% if events.has_next %}
+			    <a href="?page={{ events.next_page_number }}">{% trans "Siguiente" %}</a>
+			{% endif %}
+		    </span>
+		</div>    		
+		
+		<!--<div id="map_canvas" class="map_canvas"></div>
+		<div id="map_customizer" class="map_customizer">
+			Holaaaaa!!!
+			<a>holaaa</a>
+			<h2>hache2</h2>
+			<h3>hache3</h3>
+			<input type="button" value="Botón" onClick="setMarkers()"/>
+		</div>		-->
+  	   </div>
+	</div>
+  </section>
+  <div class="footbox">
+    <div class="container">
+    </div>
+  </div>
+{% endblock %}

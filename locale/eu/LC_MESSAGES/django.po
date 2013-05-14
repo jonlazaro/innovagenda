@@ -1,0 +1,489 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-08-25 18:35+0200\n"
+"PO-Revision-Date: 2011-08-25 18:37\n"
+"Last-Translator:   <lazaro.jon@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Translated-Using: django-rosetta 0.6.2\n"
+
+#: settings.py:42
+msgid "Spanish"
+msgstr "Gaztelania"
+
+#: settings.py:43
+msgid "Basque"
+msgstr "Euskera"
+
+#: website/templates/apidocs.html:11 website/templates/base.html:61
+#: website/templates/calendar.html:11 website/templates/contact.html:11
+#: website/templates/event.html:11 website/templates/events.html:11
+#: website/templates/search.html:11 website/templates/thanks.html:11
+msgid "Mapa"
+msgstr "Mapa"
+
+#: website/templates/apidocs.html:12 website/templates/base.html:62
+#: website/templates/calendar.html:12 website/templates/contact.html:12
+#: website/templates/event.html:12 website/templates/events.html:7
+#: website/templates/events.html.py:12 website/templates/index.html:105
+#: website/templates/search.html:12 website/templates/thanks.html:12
+msgid "Eventos"
+msgstr "Ekintzak"
+
+#: website/templates/apidocs.html:13 website/templates/base.html:63
+#: website/templates/calendar.html:7 website/templates/calendar.html.py:13
+#: website/templates/calendar.html:24 website/templates/contact.html:13
+#: website/templates/event.html:13 website/templates/events.html:13
+#: website/templates/search.html:13 website/templates/thanks.html:13
+msgid "Calendario"
+msgstr "Egutegia"
+
+#: website/templates/apidocs.html:14 website/templates/base.html:64
+#: website/templates/calendar.html:14 website/templates/contact.html:14
+#: website/templates/event.html:14 website/templates/events.html:14
+#: website/templates/search.html:7 website/templates/search.html.py:14
+#: website/templates/thanks.html:14
+msgid "Buscador"
+msgstr "Bilatzailea"
+
+#: website/templates/apidocs.html:15 website/templates/base.html:65
+#: website/templates/calendar.html:15 website/templates/contact.html:15
+#: website/templates/event.html:15 website/templates/events.html:15
+#: website/templates/search.html:15 website/templates/thanks.html:15
+msgid "API"
+msgstr "API"
+
+#: website/templates/apidocs.html:16 website/templates/base.html:66
+#: website/templates/calendar.html:16 website/templates/contact.html:7
+#: website/templates/contact.html.py:16 website/templates/event.html:16
+#: website/templates/events.html:16 website/templates/search.html:16
+#: website/templates/thanks.html:7 website/templates/thanks.html.py:16
+msgid "Contacto"
+msgstr "Kontaktatu"
+
+#: website/templates/apidocs.html:23
+msgid "API de <span>InnovAgenda</span>"
+msgstr "InnovAgenda <span>API-a</span>"
+
+#: website/templates/apidocs.html:24
+msgid ""
+"Dado que la web del área de innovación del Gobierno Vasco, <a "
+"href='http://euskadinnova.net' target='_blank'>Euskadi+Innova</a>, solo"
+" publica sus datos en texto plano, desde InnovAgenda ofrecemos a "
+"usuarios y desarrolladores una nueva forma de acceder a estos datos "
+"mediante una sencilla API."
+msgstr ""
+"<a href='http://euskadinnova.net' target='_blank'>Euskadi+Innova</a> "
+"Eusko Jaurlaritzako berrikuntza arloaren webguneak bere datuak textu "
+"lauean baino ez duenez argitaratzen, InnovAgenda-tik erabiltzaile zein"
+" programatzaileei datu hauek lortzeko API erraz bat ekartzen diegu."
+
+#: website/templates/apidocs.html:25
+msgid ""
+"Además, la API de InnovAgenda no solo ofrece la posibilidad de acceder "
+"a estos datos en diversos formatos tradicionales como JSON, XML o YAML,"
+" si no que incluye también la posibilidad de recoger esos datos en "
+"formato RDF, sobre los cuales se pueden hacer consultas SPARQL."
+msgstr ""
+"Gainera, InnovAgenda API-ak, JSON, XML edo YAML ohiko formatuetaz "
+"gain, RDF formatuan ere eman ditzake datuak, SPARQL kontsultak "
+"ahalbidetuz."
+
+#: website/templates/apidocs.html:26
+msgid "La forma de acceder a la API es mediante consultas del tipo:"
+msgstr "API-a erabiltzeko modua honako kontsulta motak egitea da:"
+
+#: website/templates/apidocs.html:27
+msgid ""
+"El valor de CONSULTA puede tener 2 formatos: '/ID_DEL_EVENTO/' si es "
+"que conocemos el identificativo numérico del evento concreto al que "
+"queremos acceder, o bien, mediante el formato "
+"'/?CLAVE__OPERACION=VALOR' "
+msgstr ""
+"CONSULTA balioak 2 formatu izan ditzake: /EKINTZA_ID/ ekintzaren "
+"zenbaki-identifikatiboa jakin ezkero, edo '/?CLAVE__OPERACION=VALOR'"
+
+#: website/templates/apidocs.html:28
+msgid ""
+"En las consultas del segundo tipo, la CLAVE puede ser 'name_es' (Título"
+" del evento en Euskera), 'name_eu' (Título del evento en castellano), "
+"'start_date' (Fecha de comienzo del evento) o 'finish_date' (Fecha de "
+"fin del evento)."
+msgstr ""
+"Bigarren formatuko kontsultetan, CLAVE balioa 'name_es' (Ekintzaren "
+"izena gaztelaniaz), 'name_eu' (Ekintzaren izena euskeraz), "
+"'start_date' (Ekintzaren hasiera data) edo 'finish_date' (Ekintzaren "
+"bukaera data) izan daiteke."
+
+#: website/templates/apidocs.html:29
+msgid ""
+"La __OPERACION es un parámetro opcional que puede tener valores de "
+"comparación como '__startswith' (Para especificar que lo buscado "
+"empieza por VALOR), '__contains' (Para especificar que lo buscado "
+"contiene VALOR), '__gt' (Para especificar que lo buscado es mayor que "
+"VALOR), '__lt' (Para especificar que lo buscado es menor que VALOR), "
+"'__gte' (Para especificar que lo buscado es mayor o igual que VALOR) o "
+"'__lte' (Para especificar que lo buscado es menor o igual que VALOR). "
+"Siendo el VALOR es lo que se quiere encontrar. Cabe comentar que es "
+"posible concatenar CONSULTA-s mediante el carácter '&'"
+msgstr ""
+"__OPERACION hautazko parametro bat da. Honek konparazio balioak hartu "
+"ditzake: '__startswith' (Bilatzeko VALOR parametroaz hasten direnak), "
+"'__contains' (Bilatzeko VALOR parametroa daukatenak), '__gt' "
+"(Bilatzeko VALOR parametroa baino haundiagoak direnak), '__lt' "
+"(Bilatzeko VALOR parametroa baino txikiagoak direnak), '__gte' "
+"(Bilatzeko VALOR parametroa baino haundiago edo berdinak direnak) edo "
+"'__lte' (Bilatzeko VALOR parametroa baino txikiago edo berdinak "
+"direnak). VALOR parametroa aurkitu nahi dena izanik. CONSULTA-k "
+"konkatenatu ahal dira '&' karaketeraren bitartez"
+
+#: website/templates/apidocs.html:30
+msgid ""
+"Para especificar el formato en que se quieren recibir los datos se debe"
+" incluir al final 'format=FORMATO'. Si se quiere especificar el idioma "
+"en el que se quieren recibir los datos (es opcional), se debe incluir "
+"'lang=IDIOMA'."
+msgstr ""
+"Datuak lortzeko formatua aukeratzeko 'format=FORMATUA' konkatenatu "
+"behar da, eta datuen hizkuntza aukeratzeko ere (hau hauazkoa izanik), "
+"'lang=HIZKUNTZA' konkatenatu behar da."
+
+#: website/templates/apidocs.html:33
+msgid "Ejemplos"
+msgstr "Adibideak"
+
+#: website/templates/apidocs.html:34
+msgid "Recoger todos los eventos en formato XML y en Euskera"
+msgstr "Ekintza guztiak lortu, euskeraz eta XML"
+
+#: website/templates/apidocs.html:36
+msgid ""
+"Recoger todos los eventos que contengan en su nombre en castellano la "
+"palabra 'Google'"
+msgstr "'Google' hitza bere izenean daukaten ekintzak lortu"
+
+#: website/templates/apidocs.html:38
+msgid "Recoger el evento 4435"
+msgstr "4435 ekintza lortu"
+
+#: website/templates/apidocs.html:40
+msgid "Recoger todos los eventos cuya fecha de fin sea 2011-09-15"
+msgstr "2011-09-15 bukaera datatzat dituzten ekintzak lortu"
+
+#: website/templates/apidocs.html:42
+msgid "Recoger todos los eventos cuya fecha de inicio sea mayor que 2011-09-10"
+msgstr "Hasiera data 2011-09-10 baino haundiagoa duten ekintzak lortu"
+
+#: website/templates/base.html:42 website/templates/base.html.py:50
+msgid "Castellano"
+msgstr "Gaztelania"
+
+#: website/templates/calendar.html:25
+msgid ""
+"Esta es la vista de calendario de Google Calendar de los eventos de "
+"InnovAgenda. Este calendario se actualiza cada día con los nuevos "
+"eventos del área de innovación del Gobierno Vasco."
+msgstr ""
+"Hau da InnovAgenda-ko ekintzen Google Calendar egutegia. Egutegi hau "
+"egunero gaurkotzen da Eusko Jaurlaritzako berrikuntza arloak "
+"argitarazten dituen ekintzekin."
+
+#: website/templates/calendar.html:26
+msgid ""
+"Al estar publicado bajo Google Calendar, puedes suscribirte a él para "
+"mantenerte informado acerca de todos los eventos que se van publicando "
+"en InnovAgenda. Para añadir el calendario de InnovAgenda a tu cuenta de"
+" Google Calendar, puedes pulsar el botón de suscripción de la esquina "
+"inferior derecha del calendario."
+msgstr ""
+"Google Calendar-pean argitaratzen denez, egutegi honetara harpidetu "
+"zaitezke InnovAgenda-n publikatzen diren ekintza guztiei buruz "
+"informatuta mantentzeko. InnovAgenda-ko egutegia zure Google Calendar "
+"kontura gehitzeko, egutegiaren behe-eskumako izkinan dagoen "
+"harpidetza-botoian sakatu dezakezu."
+
+#: website/templates/calendar.html:27
+msgid "Además, existen otras formas de suscripción como:"
+msgstr "Honez gain, beste harpidetza modu batzuk daude:"
+
+#: website/templates/contact.html:26
+msgid "<h2>Contacta con <span>nosotros</span></h2>"
+msgstr "<h2>Gurekin <span>harremanetan jarri</span></h2>"
+
+#: website/templates/contact.html:32
+msgid ""
+"Puedes contactar con nosotros para que recibamos tus dudas y/o "
+"sugerencias, mediante nuestra dirección de email o mediante el "
+"formulario de contacto. Muchas gracias."
+msgstr ""
+"Gugaz harremanetan jarri zaitezke zure zalantza eta iradokizunak "
+"helarazteko, e-mail zein kontaktu formularioaren bidez. Eskerrik asko."
+
+#: website/templates/contact.html:37
+msgid "<h2>Formulario de <span>Contacto</span></h2>"
+msgstr "<h2>Kontaktu <span>Formularioa</span></h2>"
+
+#: website/templates/contact.html:43
+msgid "Nombre"
+msgstr "Izena"
+
+#: website/templates/contact.html:53
+msgid "Mensaje"
+msgstr "Mezua"
+
+#: website/templates/contact.html:56
+msgid "Enviar"
+msgstr "Bidali"
+
+#: website/templates/event.html:42
+msgid "Lugar"
+msgstr "Lekua"
+
+#: website/templates/event.html:66
+msgid "Fecha inicio"
+msgstr "Hasiera data"
+
+#: website/templates/event.html:67
+msgid "Fecha fin"
+msgstr "Bukatze data"
+
+#: website/templates/event.html:68
+msgid "Horario"
+msgstr "Ordutegia"
+
+#: website/templates/event.html:69
+msgid "Duración"
+msgstr "Iraupena"
+
+#: website/templates/event.html:70
+msgid "Precio"
+msgstr "Prezioa"
+
+#: website/templates/event.html:71
+msgid "Temática"
+msgstr "Gaia"
+
+#: website/templates/event.html:73 website/templates/event.html.py:79
+msgid "Idioma de impartición"
+msgstr "Hizkuntza"
+
+#: website/templates/event.html:74 website/templates/event.html.py:82
+msgid "Agencia Organizadora"
+msgstr "Agentzia Antolatzailea"
+
+#: website/templates/event.html:75 website/templates/event.html.py:85
+msgid "Agencia Coordinadora"
+msgstr "Agentzia Koordinatzailea"
+
+#: website/templates/event.html:76 website/templates/event.html.py:88
+msgid "Impartido por"
+msgstr "Irakaslea"
+
+#: website/templates/event.html:92 website/templates/event.html.py:95
+msgid "Información adicional"
+msgstr "Informazio gehiago"
+
+#: website/templates/event.html:102
+msgid ""
+"Toda la información acerca de este evento está publicada en notación <a"
+" href='http://www.w3.org/TR/xhtml-rdfa-primer/' "
+"target='_blank'>RDFa</a>"
+msgstr ""
+"Ekintza honi buruzko informazio guztia <a href='http://www.w3.org/TR"
+"/xhtml-rdfa-primer/' target='_blank'>RDFa</a> notazioan idatzita dago"
+
+#: website/templates/event.html:104
+msgid ""
+"Toda la información acerca de este evento está publicada en la notación"
+" de HTML5 Microdata <a href='http://schema.org' "
+"target='_blank'>Schema.org</a>"
+msgstr ""
+"Ekintza honi buruzko informazio guztia <a href='http://schema.org' "
+"target='_blank'>Schema.org</a> HTML5 Microdata notazioan idatzita dago"
+
+#: website/templates/event.html:107
+msgid "Evento visible en formato"
+msgstr "Ekintza hurrengo formatuetan dago ikusgai"
+
+#: website/templates/event.html:113
+#, python-format
+msgid ""
+"\n"
+"\t\t\t\t\t\t<br /><b>Y en notación </b><a href='/%(langcode)s/event/%(evid)s'>HTML5 Microdata</a>\n"
+"\t\t\t\t\t      "
+msgstr ""
+"\n"
+"<br /><b>Eta </b><a href='/%(langcode)s/event/%(evid)s'>HTML5 Microdata</a><b> notazioan</b>"
+
+#: website/templates/event.html:117
+#, python-format
+msgid ""
+"\n"
+"\t\t\t\t\t\t<b>Y en notación </b><a href='/%(langcode)s/event/%(evid)s/?markFormat=rdfa'>RDFa</a>\n"
+"\t\t\t\t\t      "
+msgstr ""
+"\n"
+"<b>Eta </b><a href='/%(langcode)s/event/%(evid)s/?markFormat=rdfa'>RDFa</a><b> notazioan</b>"
+
+#: website/templates/event.html:121
+#, python-format
+msgid ""
+"\n"
+"\t\t\t\t\t<b>Evento exportable a </b><a href='%(gurl)s' target='blank'>Google Calendar</a>\n"
+"\t\t\t\t\t"
+msgstr ""
+"\n"
+"<a href='%(gurl)s' target='blank'>Google Calendar</a>-era exportatu daiteke"
+
+#: website/templates/events.html:23
+msgid "<h2>Lista de <span>Eventos</span></h2>"
+msgstr "<h2>Ekintzen <span>Zerrenda</span></h2>"
+
+#: website/templates/events.html:32
+msgid "Anterior"
+msgstr "Aurrekoa"
+
+#: website/templates/events.html:36
+#, python-format
+msgid ""
+"\n"
+"\t\t\t\tPágina %(currentpage)s de %(totpages)s\n"
+"\t\t\t    "
+msgstr ""
+"\n"
+"%(currentpage)s orria (%(totpages)s-tik)"
+
+#: website/templates/events.html:42
+msgid "Siguiente"
+msgstr "Hurrengoa"
+
+#: website/templates/index.html:105
+msgid "Próximos"
+msgstr "Hurrengo"
+
+#: website/templates/index.html:114
+msgid "Leer más"
+msgstr "Gehiago irakurri"
+
+#: website/templates/index.html:122
+msgid "Más eventos"
+msgstr "Ekintza gehiago"
+
+#: website/templates/index.html:129
+#, python-format
+msgid ""
+"\n"
+"\t\t\tBienvenidos a %(spantit)s \n"
+"\t\t"
+msgstr ""
+"\n"
+"Ongi etorri %(spantit)s -ra"
+
+#: website/templates/index.html:133
+msgid ""
+"Bienvenidos a InnovAgenda, la web en la que encontrarás fácilmente toda"
+" la información acerca de los eventos coordinados por el Área de "
+"Innovación del Gobierno Vasco."
+msgstr ""
+"Ongi etorri InnovAgenda-ra, Eusko Jaurlaritzako Berrikuntza Arloak "
+"koordinatzen dituen ekintzei buruzko informazio guztia aurkituko duzun"
+" webgunea."
+
+#: website/templates/index.html:135
+#, python-format
+msgid ""
+"\n"
+"\t\tAdemás de la información acerca de estos eventos que se puede obtener en el portal de innovación <a href='http://www.euskadinnova.net/' target=\"_blank\">Euskadi+Innova</a>, InnovAgenda te ofrece servicios añadidos como un <a href='/%(lang)s/search'>buscador avanzado de eventos</a>, <a href='/%(lang)s/'>la geolocalización de eventos próximos cercanos a tu localización</a> o la sincronización del <a href='/%(lang)s/calendar'>calendario de eventos</a> o de eventos individuales con calendarios de Google Calendar.\" \n"
+"\t\t"
+msgstr ""
+"\n"
+"Ekintza hauei buruz <a href='http://www.euskadinnova.net/' target=\"_blank\">Euskadi+Innova</a> berrikuntzari buruzko portalean aurkitu daitekeen informazioaz gain, InnovAgenda-k zerbitzu gehigarriak eskaintzen dizkizu: <a href='/%(lang)s/search'>ekintza bilatzailea</a>, <a href='/%(lang)s/'>hurrengo ekintzen geolokalizazioa zure posizioaren arabera</a> edo <a href='/%(lang)s/calendar'>ekintza-egutegia</a>-ren sinkronizazioa Google Calendar-ekin besteak beste."
+
+#: website/templates/index.html:140
+#, python-format
+msgid ""
+"\n"
+"\t\tY si quieres utilizar la información de este sitio en otras webs, InnovAgenda publica toda la información de acuerdo con los estándares de la Web Semántica y ofrece una <a href='/%(lang)s/apidocs'>API</a> para acceder de forma sencilla a toda la información acerca de los eventos.\n"
+"\t\t"
+msgstr ""
+"\n"
+"Eta webgune honetako informazioa beste web batzuetan erabili nahi baduzu, InnovAgenda-k Web Semantikoaren estandarrak jarraituz publikatzen du informazio guztia, eta <a href='%(lang)s/apidocs'>API</a> bat eskaintzen du ekintzei buruzko informazioa eskuratzeko era erraz batean."
+
+#: website/templates/thanks.html:23
+msgid "<h2>Muchas gracias por el <span>Feedback</span></h2>"
+msgstr "<h2>Eskerrik asko <span>Feedback</span>-agatik</h2>"
+
+#: website/templates/admin/base_site.html:4
+msgid "Django site admin"
+msgstr ""
+
+#: website/templates/admin/index.html:18
+#, python-format
+msgid "Models available in the %(name)s application."
+msgstr ""
+
+#: website/templates/admin/index.html:19
+#, python-format
+msgid "%(name)s"
+msgstr ""
+
+#: website/templates/admin/index.html:29
+msgid "Add"
+msgstr ""
+
+#: website/templates/admin/index.html:35
+msgid "Change"
+msgstr ""
+
+#: website/templates/admin/index.html:45
+msgid "You don't have permission to edit anything."
+msgstr ""
+
+#: website/templates/admin/index.html:51
+msgid "Empezar a traducir"
+msgstr "Hasi tradukzioagaz"
+
+#: website/templates/admin/index.html:69
+msgid "Recent Actions"
+msgstr ""
+
+#: website/templates/admin/index.html:70
+msgid "My Actions"
+msgstr ""
+
+#: website/templates/admin/index.html:74
+msgid "None available"
+msgstr ""
+
+#: website/templates/admin/index.html:88
+msgid "Unknown content"
+msgstr ""
+
+#~ msgid "API de InnovAgenda"
+#~ msgstr "InnovAgenda API-a"
+
+#~ msgid "Idiomas"
+#~ msgstr "Hizkuntzak"
+
+#~ msgid ""
+#~ "\n"
+#~ "\t\t\t\t\t\t\t%(lname)s\n"
+#~ "\t\t\t\t\t\t"
+#~ msgstr ""
+#~ "\n"
+#~ "%(lname)s"
+
+#~ msgid "Bienvenid@ a"
+#~ msgstr "Ongi etorri"

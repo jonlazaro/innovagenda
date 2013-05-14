@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load localeurl_tags %}
+
+{% block head %}
+<title>InnovAgenda - {{ event.name }}</title>
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+  {lang: 'es'}
+</script>
+{% endblock %}
+
+{% block upnav %}
+	<li><a href="/{{ LANGUAGE_CODE }}/">{% trans "Mapa" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/events" class="current">{% trans "Eventos" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/calendar">{% trans "Calendario" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/search">{% trans "Buscador" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/apidocs">{% trans "API" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/contact">{% trans "Contacto" %}</a></li>
+{% endblock %}
+
+{% block html_header %}
+	{% ifequal format "rdfa" %}
+		<html version="HTML+RDFa 1.1" lang="{{ LANGUAGE_CODE }}"
+			xmlns="http://www.w3.org/1999/xhtml"
+			xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+			xmlns:cal="http://www.w3.org/2002/12/cal/icaltzd#"
+			xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
+	{% else %}
+		<html lang="{{ LANGUAGE_CODE }}">
+	{% endifequal %}
+{% endblock %}
+
+{% block content %}
+  <section id="topbox">
+  	<div class="container">
+		<div class="inside">
+		    {% ifequal format "rdfa" %}		    
+		    <div about="{{ request.META.HTTP_HOST }}{{ request.get_full_path }}" instanceof="cal:Vevent">
+		    {% else %}		    	
+		    <div itemscope itemtype="http://schema.org/Event" itemid="{{ request.META.HTTP_HOST }}{{ request.get_full_path }}">
+		    {% endifequal%}
+			<h2><span {% ifequal format "" %}itemprop="description/type"{% endifequal %}>{{ event.activity_type.name|upper }}</span> <a>|</a> <b {% ifequal format "rdfa" %}property="cal:summary"{% else %}itemprop="name"{% endifequal %}>{{ event.name|upper }}</b></h2>
+			<div id="event_left" class="event_left" {% ifequal format "" %}itemprop="location" itemscope itemtype="http://schema.org/Place"{% endifequal %}>
+				<b>{% trans "Lugar" %}: </b><span {% ifequal format "rdfa" %}property="cal:location"{% else %}itemprop="name"{% endifequal %}>{{ event.localization }}</span>
+				{% ifequal format "rdfa" %}
+					<div rel="geo:Point">
+						<meta property="geo:lat" content="{{ event.lat }}"/>
+						<meta property="geo:long" content="{{ event.lng }}"/>
+					</div>
+				{% else %}
+					<div itemprop="address" itemscope itemtype="http://schema.org/Place">
+						<meta itemprop="name" content="{{ event.address }}"/>
+						<meta itemprop="addressCountry" content="España"/>
+						<meta itemprop="addressRegion" content="{{ event.prov.name }}" />			
+					</div>
+					<div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+						<meta itemprop="latitude" content="{{ event.lat }}"/>
+						<meta itemprop="longitude" content="{{ event.lng }}"/>
+					</div>
+				{% endifequal %}
+				<div id="event_map" class="event_map"><a {% ifequal format "" %}itemprop="maps"{% endifequal %} href="http://maps.google.com/maps/api/staticmap?size=600x600&zoom=14&markers=
+icon:http://chart.apis.google.com/chart%3Fchst%3Dd_map_pin_icon%26chld%3Dcafe%257C996600|
+{{ event.lat }},{{ event.lng }}&sensor=false"><img src="http://maps.google.com/maps/api/staticmap?size=250x250&zoom=14&markers=
+icon:http://chart.apis.google.com/chart%3Fchst%3Dd_map_pin_icon%26chld%3Dcafe%257C996600|
+{{ event.lat }},{{ event.lng }}&sensor=false"/></a></div>
+			</div>
+			<div id="event_data" class="event_data">
+				<b>{% trans "Fecha inicio" %}: </b><span {% ifequal format "rdfa" %}property="cal:dtstart"{% else %}itemprop="startDate"{% endifequal %} content="{{ event.start_date.isoformat }}T{{ event.start_hour.isoformat }}">{{ event.start_date.isoformat }}</span><br />
+				<b>{% trans "Fecha fin" %}: </b><span {% ifequal format "rdfa" %}property="cal:dtend"{% else %}itemprop="endDate"{% endifequal %} content="{{ event.finish_date.isoformat }}T{{ event.finish_hour.isoformat }}">{{ event.start_date.isoformat }}</span><br />
+				{% if event.start_hour and event.finish_hour %}				
+				<b>{% trans "Horario" %}: </b>{{ event.start_hour.isoformat }} - {{ event.finish_hour.isoformat }}<br />
+				{% endif %}
+				{% if event.duration %}
+				<b>{% trans "Duración" %}: </b><span {% ifequal format "rdfa" %}property="cal:duration"{% else %}itemprop="duration"{% endifequal %} content="T{{ event.duration }}H" >{{ event.duration }} h</span><br />
+				{% endif %}
+				{% if event.price %}				
+				<b>{% trans "Precio" %}: </b>{{ event.price }} €<br />
+				{% else %}
+				<b>{% trans "Precio" %}: </b>0 €<br />
+				{% endif %}
+				<b>{% trans "Temática" %}: </b><span {% ifequal format "rdfa" %}property="cal:categories"{% else %}itemprop="description/topic"{% endifequal %}>{{ event.topic.name }}</span><br />
+				{% ifequal format "rdfa" %}
+				<b>{% trans "Idioma de impartición" %}: </b><span>{{ event.course_lang.name }}</span><br />
+				<b>{% trans "Agencia Organizadora" %}: </b><span rel="cal:organizer">{{ event.organizator.name }}</span><br />
+				<b>{% trans "Agencia Coordinadora" %}: </b><span>{{ event.coordinator.name }}</span><br />
+				{% if event.teacher %}
+				<b>{% trans "Impartido por" %}: </b><span>{{ event.teacher }}</span><br />
+				{% endif %}
+				{% else %}
+				<div itemprop="description/language" itemscope itemtype="http://schema.org/Language">
+					<b>{% trans "Idioma de impartición" %}: </b><span itemprop="name">{{ event.course_lang.name }}</span><br />
+				</div>
+				<div itemprop="performers/organizator" itemscope itemtype="http://schema.org/Organization">
+					<b>{% trans "Agencia Organizadora" %}: </b><span itemprop="name">{{ event.organizator.name }}</span><br />
+				</div>
+				<div itemprop="performers/coordinator" itemscope itemtype="http://schema.org/Organization">
+					<b>{% trans "Agencia Coordinadora" %}: </b><span itemprop="name">{{ event.coordinator.name }}</span><br />
+				</div>
+				<div itemprop="performers/teacher" itemscope itemtype="http://schema.org/Person">
+					<b>{% trans "Impartido por" %}: </b><span itemprop="name">{{ event.teacher }}</span><br />
+				</div>
+				{% endifequal %}
+				{% ifequal format "rdfa" %}
+					<a href="{{ event.url }}" target="_blank">{% trans "Información adicional" %}</a><br /><br />
+				{% else %}
+					<meta itemprop="url" href="{{ request.META.HTTP_HOST }}{{ request.get_full_path }}"/>
+					<a itemprop="url" href="{{ event.url }}" target="_blank">{% trans "Información adicional" %}</a><br /><br />
+				{% endifequal %}
+			    </div>
+			    <div id="event_summary" class="event_summary">
+				<span {% ifequal format "rdfa" %}property="cal:description"{% else %}itemprop="description"{% endifequal %}>{{ event.summary }}</span>
+				<div id="event_export" class="event_export">
+					{% ifequal format "rdfa" %}
+					<span>{% trans "Toda la información acerca de este evento está publicada en notación <a href='http://www.w3.org/TR/xhtml-rdfa-primer/' target='_blank'>RDFa</a>" %}</span><br /><br />
+					{% else %}
+					<span>{% trans "Toda la información acerca de este evento está publicada en la notación de HTML5 Microdata <a href='http://schema.org' target='_blank'>Schema.org</a>" %}</span><br /><br />
+					{% endifequal %}
+
+					<b>{% trans "Evento visible en formato" %}: </b><br />
+					<a href="?exportAs=rdf{% ifequal format "rdfa" %}&markFormat=rdfa{% endifequal %}"><img src="/static/images/rdf-xml.png" /></a>&nbsp;&nbsp;
+					<a href="?exportAs=ntriple{% ifequal format "rdfa" %}&markFormat=rdfa{% endifequal %}"><img src="/static/images/n-triple.png" /></a>&nbsp;&nbsp;
+					<a href="?exportAs=turtle{% ifequal format "rdfa" %}&markFormat=rdfa{% endifequal %}"><img src="/static/images/turtle.png" /></a>&nbsp;&nbsp;
+					<a href="?exportAs=n3{% ifequal format "rdfa" %}&markFormat=rdfa{% endifequal %}"><img src="/static/images/n3.png" /></a><br />
+					{% ifequal format "rdfa" %}
+					<span>{% blocktrans with langcode=LANGUAGE_CODE evid=event.event_id %}
+						<br /><b>Y en notación </b><a href='/{{ langcode }}/event/{{ evid }}'>HTML5 Microdata</a>
+					      {% endblocktrans %}</span><br />
+					{% else %}
+					<span>{% blocktrans with langcode=LANGUAGE_CODE evid=event.event_id %}
+						<b>Y en notación </b><a href='/{{ langcode }}/event/{{ evid }}/?markFormat=rdfa'>RDFa</a>
+					      {% endblocktrans %}</span><br />
+					{% endifequal %}
+					{% blocktrans with gurl=event.gcalendar_url %}
+					<b>Evento exportable a </b><a href='{{ gurl }}' target='blank'>Google Calendar</a>
+					{% endblocktrans %}
+				</div>
+			    </div>
+		    </div>
+		</div>
+  	</div>
+  </section>
+  <div class="footbox">
+    <div class="container">
+	<div class="inside">
+          <div class="wrapper">
+	    <aside>
+		<h2>{% trans "Compartir" %}</h2>
+		<iframe src="http://www.facebook.com/plugins/like.php?href=http://{{ request.META.HTTP_HOST }}/es/event/{{ event.event_id }}&amp;send=false&amp;layout=box_count&amp;width=350&amp;show_faces=true&amp;action=recommend&amp;colorscheme=light&amp;font=verdana&amp;height=90" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:110px;" allowTransparency="true"></iframe>
+	
+		<a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical" data-lang="es">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
+		&nbsp;<g:plusone size="tall"></g:plusone>
+	    </aside>
+	    <section id="content">
+		<div id="disqus_thread"></div>
+	<script type="text/javascript">
+	    var disqus_shortname = 'innovagenda';
+	    var disqus_identifier = 'disqus_ev_{{ event.event_id }}';
+	    var disqus_url = 'http://{{ request.META.HTTP_HOST }}/es/event/{{ event.event_id }}';
+
+	    (function() {
+			var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		    })();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+	    </section>
+	  </div>
+	</div>
+    </div>
+  </div>
+{% endblock %}

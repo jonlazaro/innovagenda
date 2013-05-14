@@ -1,0 +1,12 @@
+*.log
+*.pot
+*.pyc
+
+*.DS_Store
+
+settings_dev.py
+settings_prod.py
+
+controllers/gcalendar_passwords.py
+
+*.db

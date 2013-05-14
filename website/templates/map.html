@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load localeurl_tags %}
+
+{% block head %}
+<title>InnovAgenda</title>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+  var map;
+
+  function success(position) {
+    var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    createMap(latlng);
+    setMarkers();
+    createMarker(latlng, "You're here!")
+  }
+  
+  function error(msg) {
+    var latlng = new google.maps.LatLng(42.924252, -2.384033);
+    createMap(latlng);
+    setMarkers();
+  }
+
+  function createMap(latlng) {
+    var myOptions = {
+      zoom: 9,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById("map_canvas_big"), myOptions);
+  }
+
+  function createMarker(latlng, text) {
+    var marker = new google.maps.Marker({
+      position: latlng, 
+      title: text
+    });
+    marker.setMap(map);
+  }
+
+  function createMarkerWithContent(lat, lng, text, image, contentString) {
+    var latlng = new google.maps.LatLng(lat, lng);
+
+    var marker = new google.maps.Marker({
+      position: latlng, 
+      title: text,
+      icon: image,
+      map: map
+    });
+
+    var infowindow = new google.maps.InfoWindow({
+    	content: contentString
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+  	infowindow.open(map, marker);
+    });
+  }
+
+
+  function setMarkers() {
+    var a = []
+    a = {{ repeated_points.values }};
+    {% for point in repeated_points %}
+	var contentString = 
+		'<section id="content">' +
+		'<article>' +
+		{% for event in comming_events %}
+			{% if event.lat == point.0 and event.lng == point.1 %}
+				'<h3>{{ event.name }}</h3>' +
+				'<p>{{ event.start_date.isoformat }} | {{ event.activity_type }}<p>' +
+				'<a href="/{{ LANGUAGE_CODE }}/event/{{ event.event_id }}">Más info</a>' +
+			{% endif %}
+	    	{% endfor %}
+		'</article>' +
+		'</section>';
+	var i = {{ forloop.counter0 }};
+	var image = '{{ MEDIA_URL }}/images/gmaps/IA_' + a[i] + '.png';
+	createMarkerWithContent({{ point.0 }}, {{ point.1 }}, "", image, contentString);
+    {% endfor %}
+  }
+  
+  if (navigator.geolocation) {
+	navigator.geolocation.getCurrentPosition(success, error);
+  } else {
+  	error('');
+  }
+</script>
+{% endblock %}
+
+{% block content %}
+  <section id="topbox">
+  	<div class="container">
+    		<div id="map_canvas_big" class="map_canvas_big"></div>	
+  	</div>
+  </section>
+  <div class="footbox">
+    <div class="container">
+      <div class="inside">
+        <div class="wrapper">
+        	<!-- aside -->
+          <aside>
+            <h2>{% trans "Próximos" %} <span>{% trans "Eventos" %}</span></h2>
+            <!-- .news -->
+		
+		{% if comming_events %}
+		    <ul class="news">
+		    {% for ev in comming_events|slice:":4" %}
+			<li>
+				<figure><strong>{{ ev.start_date|date:"j" }}</strong>{{ ev.start_date|date:"N" }}</figure>
+				<h3><a href="/{{ LANGUAGE_CODE }}/event/{{ ev.event_id }}">{{ ev.name }}</a></h3>
+				{{ ev.summary|truncatewords:15 }} <a href="/{{ LANGUAGE_CODE }}/event/{{ ev.event_id }}">{% trans "Leer más" %}</a>
+			</li>
+		    {% endfor %}
+		    </ul>
+		{% else %}
+		    <p>No comming events</p>
+		{% endif %}
+            </ul>
+	    <a href="/{{ LANGUAGE_CODE }}/events">{% trans "Más eventos" %}</a>
+            <!-- /.news -->
+          </aside>
+          <!-- content -->
+          <section id="content">
+            <article>
+            	<h2>
+		{%  blocktrans with spantit="<span>InnovAgenda</span>" %}
+			Bienvenidos a {{ spantit }} 
+		{% endblocktrans %}
+		</h2>
+              	<p>{% trans "Bienvenidos a InnovAgenda, la web en la que encontrarás fácilmente toda la información acerca de los eventos coordinados por el Área de Innovación del Gobierno Vasco." %}</p>
+              	<p>
+		{% blocktrans with lang=LANGUAGE_CODE %}
+		Además de la información acerca de estos eventos que se puede obtener en el portal de innovación <a href='http://www.euskadinnova.net/' target="_blank">Euskadi+Innova</a>, InnovAgenda te ofrece servicios añadidos como un <a href='/{{ lang }}/search'>buscador avanzado de eventos</a>, <a href='/{{ lang }}/'>la geolocalización de eventos próximos cercanos a tu localización</a> o la sincronización del <a href='/{{ lang }}/calendar'>calendario de eventos</a> o de eventos individuales con calendarios de Google Calendar." 
+		{% endblocktrans %}
+		</p>
+		<p>
+		{% blocktrans with lang=LANGUAGE_CODE %}
+		Y si quieres utilizar la información de este sitio en otras webs, InnovAgenda publica toda la información de acuerdo con los estándares de la Web Semántica y ofrece una <a href='/{{ lang }}/apidocs'>API</a> para acceder de forma sencilla a toda la información acerca de los eventos.
+		{% endblocktrans %}
+		</p>
+            </article> 
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+{% endblock %}

@@ -1,0 +1,86 @@
+{% load i18n %}
+{% load localeurl_tags %}
+
+<!DOCTYPE html>
+{% block html_header %}
+<html lang="{{ LANGUAGE_CODE }}">
+{% endblock %}
+	<head>
+	  {% block head %}{% endblock %}
+	  <meta charset="utf-8">
+	  <link rel="shortcut icon" href="/static/images/favicon.png">
+	  <link rel="stylesheet" href="/static/css/reset.css" type="text/css" media="all">
+	  <link rel="stylesheet" href="/static/css/style.css" type="text/css" media="all">
+	  <script type="text/javascript" src="/static/js/jquery-1.4.2.min.js" ></script>
+	  <script type="text/javascript" src="/static/js/cufon-yui.js"></script>
+	  <script type="text/javascript" src="/static/js/Humanst521_BT_400.font.js"></script>
+	  <script type="text/javascript" src="/static/js/Humanst521_Lt_BT_400.font.js"></script>
+	  <script type="text/javascript" src="/static/js/roundabout.js"></script>
+	  <script type="text/javascript" src="/static/js/roundabout_shapes.js"></script>
+	  <script type="text/javascript" src="/static/js/gallery_init.js"></script>
+	  <script type="text/javascript" src="/static/js/cufon-replace.js"></script>
+	  <!--[if lt IE 7]>
+	  	<link rel="stylesheet" href="css/ie/ie6.css" type="text/css" media="all">
+	  <![endif]-->
+	  <!--[if lt IE 9]>
+	  	<script type="text/javascript" src="js/html5.js"></script>
+	    <script type="text/javascript" src="js/IE9.js"></script>
+	  <![endif]-->
+	</head>
+	{% block body %}
+	<body>
+	{% endblock %}
+	  <!-- header -->
+	  <header>
+	    <div class="container">
+	    	<h1><a href="/{{ LANGUAGE_CODE }}/">nnovAgenda</a></h1>
+		<nav class="languages">	
+			{% for lang in LANGUAGES %}
+				{% ifequal lang.0 LANGUAGE_CODE %}
+					<li><a class="active"> 
+						&nbsp;{% ifequal lang.0 'es' %}
+							{% trans "Castellano" %}
+						{% else %}
+							Euskera
+						{% endifequal %}
+					</a></li>
+				{% else %}
+					<li><a class="nonactive" href="{{ request.path|chlocale:lang.0 }}">
+						&nbsp;{% ifequal lang.0 'es' %}
+							{% trans "Castellano" %}
+						{% else %}
+							Euskera
+						{% endifequal %}
+					</a></li>
+				{% endifequal %}
+			{% endfor %}
+	        </nav>
+	      <nav>
+		<ul>
+		  {% block upnav %}
+		  <li><a href="/{{ LANGUAGE_CODE }}" class="current">{% trans "Mapa" %}</a></li>
+		  <li><a href="/{{ LANGUAGE_CODE }}/events">{% trans "Eventos" %}</a></li>
+		  <li><a href="/{{ LANGUAGE_CODE }}/calendar">{% trans "Calendario" %}</a></li>
+		  <li><a href="/{{ LANGUAGE_CODE }}/search">{% trans "Buscador" %}</a></li>
+		  <li><a href="/{{ LANGUAGE_CODE }}/apidocs">{% trans "API" %}</a></li>
+		  <li><a href="/{{ LANGUAGE_CODE }}/contact">{% trans "Contacto" %}</a></li>
+		  {% endblock %}
+		</ul>
+	      </nav>
+	    </div>
+	  </header>
+
+		{% block content %}{% endblock %}
+
+	  <!-- footer -->
+	  <footer>
+	    <div class="container">
+	    	<div class="wrapper">
+		<div class="fleft">InnovAgenda by Jon Lázaro Aduna</div>
+		<div class="fright"><a href="/{{ LANGUAGE_CODE }}/?flavour=mobile" target="_blank">{% trans "Versión web móvil" %}</a> &nbsp; &nbsp; |&nbsp; &nbsp;<a href="http://www.templatemonster.com/" target="_blank">Website template</a> designed by TemplateMonster.com</div>
+	      </div>
+	    </div>
+	  </footer>
+	  <script type="text/javascript"> Cufon.now(); </script>
+	</body>
+</html>

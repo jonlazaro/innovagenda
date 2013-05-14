@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% load localeurl_tags %}
+{% load i18n %}
+
+{% block head %}
+<title>InnovAgenda - {% trans "Calendario" %}</title>
+{% endblock %}
+
+{% block upnav %}
+	<li><a href="/{{ LANGUAGE_CODE }}/">{% trans "Mapa" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/events">{% trans "Eventos" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/calendar" class="current">{% trans "Calendario" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/search">{% trans "Buscador" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/apidocs">{% trans "API" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/contact">{% trans "Contacto" %}</a></li>
+{% endblock %}
+
+{% block content %}
+  <section id="topbox">
+  	<div class="container">
+		<div id="map_canvas" class="map_canvas"><iframe src="https://www.google.com/calendar/b/0/embed?showTitle=0&amp;showDate=0&amp;showCalendars=0&amp;showTz=0&amp;mode=WEEK&amp;height=470&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src={% ifequal LANGUAGE_CODE 'es' %}innovagenda.com_d3g76urbacsgv2q8qducmc13og%40group.calendar.google.com{% else %}innovagenda.com_futd4k5b69sacrfclfrq4jc7bc%40group.calendar.google.com{% endifequal %}&amp;color=%23691426&amp;ctz=Europe%2FMadrid" style=" border-width:0 " width="770" height="470" frameborder="0" scrolling="no"></iframe></div>
+		<div id="map_customizer" class="map_customizer">
+			<h2><span>{% trans "Calendario" %}</span></h2>
+			<p>{% trans "Esta es la vista de calendario de Google Calendar de los eventos de InnovAgenda. Este calendario se actualiza cada día con los nuevos eventos del área de innovación del Gobierno Vasco." %}</p>
+			<p>{% trans "Al estar publicado bajo Google Calendar, puedes suscribirte a él para mantenerte informado acerca de todos los eventos que se van publicando en InnovAgenda. Para añadir el calendario de InnovAgenda a tu cuenta de Google Calendar, puedes pulsar el botón de suscripción de la esquina inferior derecha del calendario." %}</p>
+			<p>{% trans "Además, existen otras formas de suscripción como:" %}</p>
+			<a href="http://www.google.com/calendar/feeds/{% ifequal LANGUAGE_CODE 'es' %}innovagenda.com_d3g76urbacsgv2q8qducmc13og%40group.calendar.google.com{% else %}innovagenda.com_futd4k5b69sacrfclfrq4jc7bc%40group.calendar.google.com{% endifequal %}/public/basic" target="_blank"><img src="/static/images/xml.gif" /></a>&nbsp;&nbsp;
+			<a href="http://www.google.com/calendar/ical/{% ifequal LANGUAGE_CODE 'es' %}innovagenda.com_d3g76urbacsgv2q8qducmc13og%40group.calendar.google.com{% else %}innovagenda.com_futd4k5b69sacrfclfrq4jc7bc%40group.calendar.google.com{% endifequal %}/public/basic.ics" target="_blank"><img src="/static/images/ical.gif" /></a>
+		</div>	
+  	</div>
+  </section>
+  <div class="footbox">
+    <div class="container">
+    </div>
+  </div>
+{% endblock %}

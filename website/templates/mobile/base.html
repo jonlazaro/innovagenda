@@ -1,0 +1,38 @@
+{% load i18n %}
+{% load localeurl_tags %}
+
+<!DOCTYPE html> 
+<html> 
+    <head>
+	{% block head %}{% endblock %}
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="/static/images/favicon.png">
+
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.min.css" />
+	<link rel="stylesheet" href="/static/css/jquerymobileext.css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.min.js"></script>
+	<script type="text/javascript">
+		window.addEventListener(“load”,function() {
+			setTimeout(function(){
+			window.scrollTo(0, 1);
+			}, 0);
+		});
+	</script>
+	<script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+	  {lang: 'es'}
+	</script>
+    </head>
+    <body> 	
+	<div data-role="page" data-add-back-btn="true" data-theme="c">
+		<div data-role="header" data-position="inline" class="ui-bar-f">
+			<h1>{% block title %}{% endblock %}</h1>
+			<a href="/{{ LANGUAGE_CODE }}" data-icon="home" data-ajax="false" data-theme="c" class="ui-btn-right">Home</a>
+		</div>
+		{% block content %}{% endblock %}
+		<div data-role="footer" data-theme="c">
+			<p>&nbsp;InnovAgenda by Jon Lázaro Aduna</p>
+		</div>
+	</div>
+    </body>
+</html>

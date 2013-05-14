@@ -1,0 +1,74 @@
+{% extends "mobile/base.html" %}
+
+{% load i18n %}
+{% load localeurl_tags %}
+
+{% block title %}
+	{% trans "Lista de eventos" %}
+{% endblock %}
+
+{% block content %}
+<div data-role="content">
+	<h2>{{ event.name|upper }}</h2>	
+	<b>{% trans "Fecha inicio" %}: </b>{{ event.start_date.isoformat }}<br />
+	<b>{% trans "Fecha fin" %}: </b>{{ event.start_date.isoformat }}<br />
+	{% if event.start_hour and event.finish_hour %}
+	<b>{% trans "Horario" %}: </b>{{ event.start_hour.isoformat }} - {{ event.finish_hour.isoformat }}<br />
+	{% endif %}
+	{% if event.duration %}
+	<b>{% trans "Duración" %}: </b>{{ event.duration }} h<br />
+	{% endif %}
+	{% if event.price %}				
+	<b>{% trans "Precio" %}: </b>{{ event.price }} €<br />
+	{% else %}
+	<b>{% trans "Precio" %}: </b>0 €<br />
+	{% endif %}
+	<b>{% trans "Temática" %}: </b>{{ event.topic.name }}<br />
+	<b>{% trans "Idioma de impartición" %}: </b>{{ event.course_lang.name }}<br />
+	<b>{% trans "Agencia Organizadora" %}: </b>{{ event.organizator.name }}<br />
+	<b>{% trans "Agencia Coordinadora" %}: </b>{{ event.coordinator.name }}<br />
+	{% if event.teacher %}
+	<b>{% trans "Impartido por" %}: </b>{{ event.teacher }}<br />
+	{% endif %}
+	<b>{% trans "Lugar" %}: </b>	
+	<div data-role="collapsible" data-collapsed="true">
+		<h3>{{ event.localization }}</h3>
+		<p><img src="http://maps.google.com/maps/api/staticmap?size=150x150&zoom=13&markers=
+icon:http://chart.apis.google.com/chart%3Fchst%3Dd_map_pin_icon%26chld%3Dcafe%257C996600|
+{{ event.lat }},{{ event.lng }}&sensor=false"/></p>
+	</div>
+	<b>{% trans "Más" %}: </b>	
+	<div data-role="collapsible" data-collapsed="true">
+		<h3>{% trans "Descripción" %}</h3>
+		<p>{{ event.summary }}</p>
+	</div>
+	<a href="{{ event.url }}" target="_blank">{% trans "Información adicional" %}</a>
+	<br />
+	
+	<div data-role="collapsible" data-collapsed="true">
+		<h3>{% trans "Compartir" %}</h3>
+		<p><iframe src="http://www.facebook.com/plugins/like.php?href=http://{{ request.META.HTTP_HOST }}/es/event/{{ event.event_id }}&amp;send=false&amp;layout=box_count&amp;width=350&amp;show_faces=true&amp;action=recommend&amp;colorscheme=light&amp;font=verdana&amp;height=90" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:60px;" allowTransparency="true"></iframe>
+	
+		<a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical" data-lang="es">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
+		<g:plusone size="tall"></g:plusone></p>
+	</div>
+
+
+	<br />
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+	    var disqus_shortname = 'innovagenda';
+	    var disqus_identifier = 'disqus_ev_{{ event.event_id }}';
+	    var disqus_url = 'http://{{ request.META.HTTP_HOST }}/es/event/{{ event.event_id }}';
+
+	    (function() {
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+{% endblock %}

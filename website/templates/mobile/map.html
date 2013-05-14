@@ -1,0 +1,98 @@
+{% extends "mobile/base.html" %}
+
+{% load i18n %}
+{% load localeurl_tags %}
+
+{% block head %}
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+{% endblock %}
+
+{% block title %}
+	{% trans "Mapa" %}
+{% endblock %}
+
+{% block content %}
+<div id="map_canvas" style="height:350px;"></div>
+
+<script type="text/javascript">
+  var map;
+
+  function success(position) {
+    var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    createMap(latlng);
+    setMarkers();
+    createMarker(latlng, "You're here!")
+  }
+  
+  function error(msg) {
+    var latlng = new google.maps.LatLng(42.924252, -2.384033);
+    createMap(latlng);
+    setMarkers();
+  }
+
+  function createMap(latlng) {
+    var myOptions = {
+      zoom: 9,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    mapdiv = document.getElementById("map_canvas");
+    map = new google.maps.Map(mapdiv, myOptions);
+  }
+
+  function createMarker(latlng, text) {
+    var marker = new google.maps.Marker({
+      position: latlng, 
+      title: text
+    });
+    marker.setMap(map);
+  }
+
+  function createMarkerWithContent(lat, lng, text, image, contentString) {
+    var latlng = new google.maps.LatLng(lat, lng);
+
+    var marker = new google.maps.Marker({
+      position: latlng, 
+      title: text,
+      icon: image,
+      map: map
+    });
+
+    var infowindow = new google.maps.InfoWindow({
+    	content: contentString
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+  	infowindow.open(map, marker);
+    });
+  }
+
+  function setMarkers() {
+    var a = []
+    a = {{ repeated_points.values }};
+    {% for point in repeated_points %}
+	var contentString = 
+		'<section id="content">' +
+		'<article>' +
+		{% for event in comming_events %}
+			{% if event.lat == point.0 and event.lng == point.1 %}
+				'<h3>{{ event.name }}</h3>' +
+				'<p>{{ event.start_date.isoformat }} | {{ event.activity_type }}<p>' +
+				'<a href="/{{ LANGUAGE_CODE }}/event/{{ event.event_id }}">Más info</a>' +
+			{% endif %}
+	    	{% endfor %}
+		'</article>' +
+		'</section>';
+	var i = {{ forloop.counter0 }};
+	var image = '{{ MEDIA_URL }}/images/gmaps/IA_' + a[i] + '.png';
+	createMarkerWithContent({{ point.0 }}, {{ point.1 }}, "", image, contentString);
+    {% endfor %}
+  }
+  
+  if (navigator.geolocation) {
+	navigator.geolocation.getCurrentPosition(success, error);
+  } else {
+  	error('');
+  }
+</script>
+{% endblock %}

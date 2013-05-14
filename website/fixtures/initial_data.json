@@ -1,0 +1,286 @@
+[
+	{
+		"model": "website.ActivityType",
+		"pk": 1,
+		"fields": {
+			"name_es": "Curso",
+			"name_eu": "Ikastaroa"
+		}
+	},
+	{
+		"model": "website.ActivityType",
+		"pk": 2,
+		"fields": {
+			"name_es": "Jornada",
+			"name_eu": "Ekitaldia"
+		}
+	},
+	{
+		"model": "website.ActivityType",
+		"pk": 3,
+		"fields": {
+			"name_es": "Barnetegi",
+			"name_eu": "Barnetegia"
+		}
+	},
+	{
+		"model": "website.ActivityType",
+		"pk": 4,
+		"fields": {
+			"name_es": "Taller",
+			"name_eu": "Tailerra"
+		}
+	},
+	{
+		"model": "website.ActivityType",
+		"pk": 5,
+		"fields": {
+			"name_es": "Conferencia",
+			"name_eu": "Konferentzia"
+		}
+	},
+	{
+		"model": "website.ActivityType",
+		"pk": 6,
+		"fields": {
+			"name_es": "Exposición",
+			"name_eu": "Erakusketa"
+		}
+	},
+	{
+		"model": "website.ActivityType",
+		"pk": 7,
+		"fields": {
+			"name_es": "Congreso",
+			"name_eu": "Kongresua"
+		}
+	},
+	{
+		"model": "website.ActivityType",
+		"pk": 8,
+		"fields": {
+			"name_es": "Feria",
+			"name_eu": "Feria"
+		}
+	},
+	{
+		"model": "website.ActivityType",
+		"pk": 9,
+		"fields": {
+			"name_es": "Reunión",
+			"name_eu": "Bilera"
+		}
+	},
+	{
+		"model": "website.Topic",
+		"pk": 1,
+		"fields": {
+			"name_es": "Innovación Tecnológica",
+			"name_eu": "Berrikuntza Teknologikoa"
+		}
+	},
+	{
+		"model": "website.Topic",
+		"pk": 2,
+		"fields": {
+			"name_es": "Innovación Social",
+			"name_eu": "Gizarte Berrikuntza"
+		}
+	},
+	{
+		"model": "website.Topic",
+		"pk": 3,
+		"fields": {
+			"name_es": "Transformación Empresarial",
+			"name_eu": "Enpresa Eraldaketa"
+		}
+	},
+	{
+		"model": "website.Topic",
+		"pk": 4,
+		"fields": {
+			"name_es": "Enpresa Digitala",
+			"name_eu": "Enpresa Digitala"
+		}
+	},
+	{
+		"model": "website.Topic",
+		"pk": 5,
+		"fields": {
+			"name_es": "Otros",
+			"name_eu": "Beste batzuk"
+		}
+	},
+	{
+		"model": "website.Province",
+		"pk": 1,
+		"fields": {
+			"name_es": "Bizkaia",
+			"name_eu": "Bizkaia"
+		}
+	},
+	{
+		"model": "website.Province",
+		"pk": 2,
+		"fields": {
+			"name_es": "Gipuzkoa",
+			"name_eu": "Gipuzkoa"
+		}
+	},
+	{
+		"model": "website.Province",
+		"pk": 3,
+		"fields": {
+			"name_es": "Araba",
+			"name_eu": "Araba"
+		}
+	},
+	{
+		"model": "website.Province",
+		"pk": 4,
+		"fields": {
+			"name_es": "Otras",
+			"name_eu": "Gainerakoak"
+		}
+	},
+	{
+		"model": "website.Language",
+		"pk": 1,
+		"fields": {
+			"name_es": "Castellano",
+			"name_eu": "Gaztelania"
+		}
+	},
+	{
+		"model": "website.Language",
+		"pk": 2,
+		"fields": {
+			"name_es": "Euskera",
+			"name_eu": "Euskera"
+		}
+	},
+	{
+		"model": "website.Language",
+		"pk": 3,
+		"fields": {
+			"name_es": "Inglés",
+			"name_eu": "Ingelesa"
+		}
+	},
+	{
+		"model": "website.Language",
+		"pk": 4,
+		"fields": {
+			"name_es": "Otros",
+			"name_eu": "Beste batzuk"
+		}
+	},
+	{
+		"model": "website.Place",
+		"pk": 1,
+		"fields": {
+			"name_es": "Parque Tecnológico de Zamudio",
+			"name_eu": "Zamudioko Parke Teknologikoa",
+			"address": "Ibaizabal bidea 101, 48170, Zamudio",
+			"lat": "43.292466",
+			"lng": "-2.860973",
+			"prov": "1"
+		}
+	},
+	{
+		"model": "website.Place",
+		"pk": 2,
+		"fields": {
+			"name_es": "Parque Tecnológico de San Sebastián",
+			"name_eu": "Donostiako Parke Teknologikoa",
+			"address": "Paseo Mikeletegi 53, 20009, Donostia-San Sebastián",
+			"lat": "43.292513",
+			"lng": "-1.984792",
+			"prov": "2"
+		}
+	},
+	{
+		"model": "website.Place",
+		"pk": 3,
+		"fields": {
+			"name_es": "Parque Tecnológico de Álava",
+			"name_eu": "Arabako Parke Teknologikoa",
+			"address": "Hermanos Lumiere 11, 01510, Miñano",
+			"lat": "42.911555",
+			"lng": "-2.65543",
+			"prov": "3"
+		}
+	},
+	{
+		"model": "website.Place",
+		"pk": 4,
+		"fields": {
+			"name_es": "SPRI",
+			"name_eu": "SPRI",
+			"address": "Alameda de Urquijo 36, 48011, Bilbao",
+			"lat": "43.259815",
+			"lng": "-2.935302",
+			"prov": "1"
+		}
+	},
+	{
+		"model": "website.Place",
+		"pk": 5,
+		"fields": {
+			"name_es": "Araba Enpresa Digitala",
+			"name_eu": "Araba Enpresa Digitala",
+			"address": "Avda. Albert Einstein 6, 01510, Miñano",
+			"lat": "42.911555",
+			"lng": "-2.65543",
+			"prov": "3"
+		}
+	},
+	{
+		"model": "website.Place",
+		"pk": 6,
+		"fields": {
+			"name_es": "Miramón Enpresa Digitala",
+			"name_eu": "Miramon Enpresa Digitala",
+			"address": "Paseo Mikeletegi 56, 20009, Donostia-San Sebastián",
+			"lat": "43.292513",
+			"lng": "-1.984792",
+			"prov": "2"
+		}
+	},
+	{
+		"model": "website.Place",
+		"pk": 7,
+		"fields": {
+			"name_es": "Bizkaia Enpresa Digitala",
+			"name_eu": "Bizkaia Enpresa Digitala",
+			"address": "Ibaizabal bidea 101, 48170, Zamudio",
+			"lat": "43.292466",
+			"lng": "-2.860973",
+			"prov": "1"
+		}
+	},
+	{
+		"model": "website.Place",
+		"pk": 8,
+		"fields": {
+			"name_es": "Garaia Enpresa Digitala",
+			"name_eu": "Garaia Enpresa Digitala",
+			"address": "Goiru Kalea 1, 20500, Arrasate-Mondragon",
+			"lat": "43.060705",
+			"lng": "-2.50072",
+			"prov": "2"
+		}
+	},
+		{
+		"model": "website.Place",
+		"pk": 9,
+		"fields": {
+			"name_es": "Polo de Innovación Garaia",
+			"name_eu": "Garaia Berrikuntza Gunea",
+			"address": "Goiru Kalea 1, 20500, Arrasate-Mondragon",
+			"lat": "43.060705",
+			"lng": "-2.50072",
+			"prov": "2"
+		}
+	}
+]

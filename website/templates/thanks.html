@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load localeurl_tags %}
+{% load i18n %}
+
+{% block head %}
+<title>InnovAgenda - {% trans "Contacto" %}</title>
+{% endblock %}
+
+{% block upnav %}
+	<li><a href="/{{ LANGUAGE_CODE }}/">{% trans "Mapa" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/events">{% trans "Eventos" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/calendar">{% trans "Calendario" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/search">{% trans "Buscador" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/apidocs">{% trans "API" %}</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/contact" class="current">{% trans "Contacto" %}</a></li>
+{% endblock %}
+
+{% block content %}
+  <section id="topbox">
+  	<div class="container">
+		<div class="inside">
+			{% trans "<h2>Muchas gracias por el <span>Feedback</span></h2>" %}
+		<div class="inside">
+  	</div>
+  </section>
+  <div class="footbox">
+    <div class="container">
+    </div>
+  </div>
+{% endblock %}
