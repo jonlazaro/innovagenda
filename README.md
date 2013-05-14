@@ -11,6 +11,6 @@ This project, besides the web visualization itself, provides:
 
 It was developed on 2011 as the Degree Final Project of my BSc in Computer Engineering at University of Deusto (Bilbao).
 
-The complete documentation about InnovAgenda is available in the "docs" folder of this repo.
+The complete documentation about InnovAgenda is available in the "docs" folder of this repo (in Spanish).
 
 You can view InnovAgenda working at: http://www.innovagenda.com.
